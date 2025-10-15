@@ -14,12 +14,7 @@ on:
         type: string
   push:
     branches:
-      - '!release-branch'
-      - develop
-      - release-*
-      - master
-      - 1.*
-      - MOSIP*
+      - tf_myanmar
 
 jobs:
   build-admin-ui:
