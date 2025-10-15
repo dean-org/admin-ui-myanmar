@@ -14,16 +14,11 @@ on:
         type: string
   push:
     branches:
-      - '!release-branch'
-      - develop
-      - release-*
-      - master
-      - 1.*
-      - MOSIP*
+      - tf_myanmar
 
 jobs:
   build-admin-ui:
-    uses: mosip/kattu/.github/workflows/npm-build.yml@master
+    uses: mosip/kattu/.github/workflows/npm-build.yml@develop
     with:
       SERVICE_LOCATION: ./admin-ui
       BUILD_ARTIFACT: admin-ui
@@ -121,7 +116,7 @@ jobs:
 
       - name: Upload the springboot jars
         if: ${{ !contains(github.ref, 'master') || !contains(github.ref, 'main') }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.BUILD_ARTIFACT }}
           path: ${{ env.BUILD_ARTIFACT }}.zip
