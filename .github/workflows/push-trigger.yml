@@ -14,7 +14,7 @@ on:
         type: string
   push:
     branches:
-      - tf_myanmar
+     - tf_mos
 
 jobs:
   build-admin-ui:
