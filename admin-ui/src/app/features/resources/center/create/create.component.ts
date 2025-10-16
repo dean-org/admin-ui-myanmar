@@ -31,7 +31,7 @@ import {
   MatKeyboardRef,
   MatKeyboardComponent,
   MatKeyboardService
-} from 'ngx7-material-keyboard';
+} from 'ngx9-virtual-material-keyboard';
 import { AuditService } from 'src/app/core/services/audit.service';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { HolidayModel } from 'src/app/core/models/holiday-model';
