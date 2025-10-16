@@ -14,16 +14,11 @@ on:
         type: string
   push:
     branches:
-      - '!release-branch'
-      - develop
-      - release-*
-      - master
-      - 1.*
-      - MOSIP*
+     - tf_mos
 
 jobs:
   build-admin-ui:
-    uses: mosip/kattu/.github/workflows/npm-build.yml@master
+    uses: mosip/kattu/.github/workflows/npm-build.yml@develop
     with:
       SERVICE_LOCATION: ./admin-ui
       BUILD_ARTIFACT: admin-ui
