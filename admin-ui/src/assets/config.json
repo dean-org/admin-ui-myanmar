@@ -1,10 +1,10 @@
 {
     "primaryLangCode": "eng",
     "secondaryLangCode": "ara",
-    "baseUrl": "https://dev.mosip.net/v1/",
-    "adminUrl":"/admin-ui/",
+    "baseUrl": "https://api-internal.mosdemo.idencode.link/v1/",
+    "adminUrl":"/",
     "templateRepoUrl":"/admin-ui/templates/",
-    "validateToken": "admin/authorize/admin/validateToken",
+    "validateToken": "authmanager/authorize/admin/validateToken",
     "login": "admin/login/",
     "logout": "admin/logout/user"
 } 

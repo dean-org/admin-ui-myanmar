@@ -499,7 +499,10 @@
             "btnTxt": "Ok"
         },
         "statuscheckFailed":"Failed",
-        "statuscheckCompleted":"Completed"
+        "statuscheckProcessed":"Processed",
+        "statuscheckInProgress":"In Progress",
+        "statuscheckCompleted":"Completed",
+        "statuscheckRejected":"Rejected"
 
     },
     "packet-upload":{

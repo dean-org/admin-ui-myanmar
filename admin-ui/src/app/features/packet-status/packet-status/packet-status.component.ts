@@ -54,35 +54,51 @@ export class PacketStatusComponent implements OnInit {
     this.auditService.audit(5, 'ADM-045');
   }
 
-  search() {
-    this.data = null;
-    this.errorMessage = '';
-    if (this.id.length == 0) {
-      this.error = true;
-    } else {
-      this.error = false;
-      this.dataStorageService.getPacketStatus(this.id, this.headerService.getUserPreferredLanguage()).subscribe(response => {
-        if (response['errors']) {
-          this.error = true;
-          this.statusCheck = '';
-          this.errorMessage = this.serverMessage[response['errors'][0].errorCode];
-       } else{          
-          this.data = response['response']['packetStatusUpdateList'];
-          for (let i = 0 ; i < this.data.length; i++) {
-            if (this.data[i].statusCode.includes('FAILED')) {
-              this.statusCheck = this.messages.statuscheckFailed;
-              break;
-            } else {
-              this.statusCheck = this.messages.statuscheckCompleted;
-            }
-            this.error = false;
-            this.showDetails = true;
-          }
-        }
-      });
-    }
-  }
+   search() {
+  this.data = null;
+  this.errorMessage = '';
+  if (this.id.length == 0) {
+    this.error = true;
+  } else {
+    this.error = false;
+    this.dataStorageService.getPacketStatus(this.id, this.headerService.getUserPreferredLanguage()).subscribe(response => {
+      if (response['errors']) {
+        this.error = true;
+        this.statusCheck = '';
+        this.errorMessage = this.serverMessage[response['errors'][0].errorCode];
+      } else {          
+        let allData = response['response']['packetStatusUpdateList'];
+        // Find where the internal processing completed
+        let processedIndex = allData.findIndex(item => 
+          item.transactionTypeCode === 'INTERNAL_WORKFLOW_ACTION' &&
+          (item.statusCode === 'PROCESSED' || item.statusCode === 'COMPLETED')
+        );
 
+        if (processedIndex !== -1) {
+          this.data = allData.slice(0, processedIndex + 1);
+        } else {
+          this.data = allData;
+        }
+
+        let i = this.data.length - 1;
+        if (this.data[i].statusCode.includes('FAILED')) {
+          this.statusCheck = this.messages.statuscheckFailed;
+        } else if (this.data[i].statusCode.includes('REJECTED')) {
+          this.statusCheck = this.messages.statuscheckRejected;
+        } else if (this.data[i].statusCode.includes('COMPLETED') || this.data[i].statusCode.includes('PROCESSED')) {
+          this.statusCheck = this.messages.statuscheckCompleted;
+        } else {
+          this.statusCheck = this.messages.statuscheckInProgress;
+        }
+
+        console.log("status for ", this.data[i].transactionTypeCode, "is ", this.statusCheck);
+        this.error = false;
+        this.showDetails = true;
+        console.log("Final status is ", this.statusCheck);
+      }
+    });
+  }
+}
 viewMore() {
     this.showTimeline = !this.showTimeline;
   }
