@@ -9,7 +9,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MachinesHeaderComponent } from './machines-header/machines-header.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StatusPipe } from 'src/app/shared/pipes/status.pipe';
-import { MatKeyboardModule } from 'ngx9-virtual-material-keyboard';
+import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
 @NgModule({
   imports: [

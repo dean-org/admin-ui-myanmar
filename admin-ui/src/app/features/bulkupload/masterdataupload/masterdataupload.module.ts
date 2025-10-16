@@ -9,7 +9,7 @@ import { SharedModule } from '../../../shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { I18nModule } from '../../../../app/i18n.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { MatKeyboardModule } from 'ngx9-virtual-material-keyboard';
+import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
 
 @NgModule({

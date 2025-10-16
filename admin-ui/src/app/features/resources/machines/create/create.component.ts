@@ -32,7 +32,7 @@ import {
   MatKeyboardRef,
   MatKeyboardComponent,
   MatKeyboardService,
-} from 'ngx9-virtual-material-keyboard';
+} from '@ngx-material-keyboard/core';
 
 import moment from 'moment';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
